@@ -19,7 +19,9 @@ define(function(require, exports, module) {
 		opt.navId = opt.navId||'';
 		$("#"+opt.attach).append(html);
 
-		$("#"+opt.navId).menuAim({
+		var $menu = $("#"+opt.navId);
+		console.log($menu);
+		$menu.menuAim({
 			 activate: activateSubmenu,
        deactivate: deactivateSubmenu
 		});
