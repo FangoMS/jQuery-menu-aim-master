@@ -3,9 +3,9 @@ define(function(require, exports, module) {
 
 	var opt = {
 		navId: 'myNav',
-		attach: 'myTest',
+		attach: 'categoryNav',
 	};
 
 	var kk = new nav(opt);
-
+	kk.init();
 });
