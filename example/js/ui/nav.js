@@ -93,17 +93,32 @@ define(function(require, exports, module) {
 		var $menu = $("#myNav");
 		console.log($menu);
 		$menu.menuAim({
-			 activate: cc,
-       deactivate: deactivateSubmenu,
-       rowSelector: "> div"
+			activate: cc,
+       		deactivate: deactivateSubmenu,
+       		rowSelector: "> div"
 		});
 
 		function cc(row) {
-			alert('hhh');
+			console.log(row);
+			var $row = $(row);
+			var height = $menu.outerHeight(),
+                width = $menu.outerWidth();
+			// $(".nav-subcats").css({
+			// 	display: "block",
+			// 	top: -1,
+			// 	left: width-3,
+			// 	height: height - 4
+			// });
+			// $(".nav-subcats>div.nav-subcat").css({
+			// 	display: "block",
+
+			// });
+			
 		}
 
 		function deactivateSubmenu(row) {
-
+			var $row = $(row);
+			
 		}
 
 /*			$.ajax({
