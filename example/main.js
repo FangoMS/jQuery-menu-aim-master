@@ -7,5 +7,4 @@ define(function(require, exports, module) {
 	};
 
 	var kk = new nav(opt);
-	kk.init();
 });
