@@ -14,10 +14,10 @@ define(function(require, exports, module) {
 				<div class="nav-subcat nav-template">\
 				<% for(var j = 0;j<navSubcat.subSection.length;j++) { var subSection = navSubcat.subSection[j]; %>\
 					<div class="nav-subcat-section">\
-						<div class="nav-subcat-title"><a href="<%=subSection.linkInfo %>"><%=subSection.name %></a></div>\
+						<div class="nav-subcat-title"><a href="<%=subSection.linkInfo %>" class="nav-title"><span class="nav-title-text"><%=subSection.name %></span></a></div>\
 						<div class="nav-subcat-links">\
 								<% for(var k = 0;k<subSection.subLinks.length;k++) { var sublink = subSection.subLinks[k]; if(k>0) {%> | <% } %>\
-									<a href="<%=sublink.linkInfo %>"><%=sublink.name %></a>\
+									<a href="<%=sublink.linkInfo %>" class="nav-item"><span class="nav-link-text"><%=sublink.name %></span></a>\
 									<% } %>\
 						</div>\
 					</div>\
@@ -94,33 +94,53 @@ define(function(require, exports, module) {
 		console.log($menu);
 		$menu.menuAim({
 			activate: cc,
-       		deactivate: deactivateSubmenu,
-       		rowSelector: "> div"
+   		deactivate: deactivateSubmenu,
+   		rowSelector: "> div",
+   		exitMenu: exitMenu
+		});
+
+		function exitMenu() {
+			//当鼠标离开submenu的时候，关闭submenu
+			$('.nav-subcats').mouseleave(function(event) {
+					
+			});
+		}
+
+		$(".nav-all").mouseleave(function(event) {
+			$(".nav-subcats").css("display", "none");
 		});
 
 		function cc(row) {
-			console.log(row);
 			var $row = $(row);
-			var height = $menu.outerHeight(),
-                width = $menu.outerWidth();
-			// $(".nav-subcats").css({
-			// 	display: "block",
-			// 	top: -1,
-			// 	left: width-3,
-			// 	height: height - 4
-			// });
-			// $(".nav-subcats>div.nav-subcat").css({
-			// 	display: "block",
+      var left = $menu.offset().left;
+      var top = $menu.offset().top;
 
-			// });
+			$(".nav-subcats").css({
+				display: "block",
+				// top: 10,
+				left: left + 118,
+				top: top
+			});
+			$(".nav-subcats>div.nav-subcat").eq($row.index()).css({
+				display: "block",
+				top: 21
+			});
 			
 		}
 
 		function deactivateSubmenu(row) {
 			var $row = $(row);
-			
+			$(".nav-subcats").css({
+				display: "none",
+			});
+			$(".nav-subcats>div.nav-subcat").eq($row.index()).css({
+				display: "none",
+			});
 		}
 
+		$(document).click(function() {
+			$(".nav-subcats").css("display", "none");
+		});
 /*			$.ajax({
 				url: "",
 				type: "post",

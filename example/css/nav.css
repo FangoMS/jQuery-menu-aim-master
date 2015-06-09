@@ -1,7 +1,7 @@
 
 .nav-locked{
 	position:absolute;
-	top:30px;
+	top:200px;
 	left:6px;
 
 }
@@ -39,7 +39,38 @@
 .nav-subcats {
 	display: none;
 	position:absolute;
-	background-color: #bbb;
+	background-color: #EEF6F6;
+	border:1px solid #bbb;
+}
+
+.nav-subcat {
+	padding-bottom:5px;
+  padding-top:5px;
+  padding-left:16px;
+  padding-right:16px;
+  content:center;
+}
+
+.nav-subcat-section>div.nav-subcat-title {
+	float:left;
+	width:96px;
+	text-align: right;
+}
+
+.nav-subcat-section>div.nav-subcat-links {
+	float:right;
+}
+
+.nav-subcat-title>a.nav-title {
+	padding-right: 15px;
+}
+.nav-subcat-links>a.nav-item {
+	padding-left: 10px; 
+	padding-right: 9px;
+}
+
+span.nav-title-text {
+	color:#FBC192;
 }
 
 .nav-subcats>div.nav-subcat {
