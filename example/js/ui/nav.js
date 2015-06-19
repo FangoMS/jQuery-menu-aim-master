@@ -9,7 +9,7 @@ define(function(require, exports, module) {
 			<% }%>\
 				</div>';
 
-		var _htmlSubNav = '<div class="nav-subcats" id="<%=navSubCatId %>">\
+		var _htmlSubNav = '<div class="nav-subcats" >\
 			<% for(var i = 0;i<data.length;i++) { var navSubcat = data[i]; console.log(navSubcat);%>\
 				<div class="nav-subcat nav-template">\
 				<% for(var j = 0;j<navSubcat.subSection.length;j++) { var subSection = navSubcat.subSection[j]; %>\
@@ -40,6 +40,7 @@ define(function(require, exports, module) {
 				navId: '',
 				htmlNav: _htmlNav,
 				htmlSubNav: _htmlSubNav,
+				data: data,
 				afterRender: $.noop
 		}, opt);
 
@@ -51,18 +52,18 @@ define(function(require, exports, module) {
 		// 导航界面初始化
 		var htmlNav = tmpl(options.htmlNav, {
 			navId:options.navId,
-			data:data.nav
+			data:options.data.nav
 		});
 		$("#"+options.attach).append(htmlNav);
 
 		//展开项初始化
 		var htmlSubNav = tmpl(options.htmlSubNav, {
 			navSubCatId: 'testSubCat',
-			data: data.subNav
+			data: options.data.subNav
 		});
 		$("#"+options.attach).after(htmlSubNav);
 
-		var $menu = $("#myNav");
+		var $menu = $("#"+options.navId);
 		console.log($menu);
 		$menu.menuAim({
 			activate: cc,

@@ -1,8 +1,8 @@
 
 .nav-locked{
-	position:absolute;
-	top:200px;
-	left:6px;
+	/* position:absolute; */
+	/* top:200px;
+	left:6px; */
 
 }
 
@@ -26,7 +26,7 @@
 }
 
 .nav-cat>div.item:hover {
-	 background-image: none;
+		 background-image: none;
      color: white;
      background-color: rgb(0, 129, 194);
      background-color: rgba(0, 129, 194, 0.5);
@@ -77,5 +77,31 @@ span.nav-title-text {
 	display: none;
 }
 
+.sort-section {
+	padding-bottom:5px;
+  padding-top:5px;
+  padding-left:16px;
+  padding-right:16px;
+  content:center;
+}
 
+.sort-item {
+	margin-right: 10px;
+}
 
+.placeHolder { background-color:white ; border: 1px solid #424141; width:20px; height:20px;   opacity: 0.4;}
+
+/* .placeHolder  { width:10px; height:10px; border:solid 1px black; background-color:#E0E0E0; text-align:center; padding-top:5px; } */
+
+.sort-section {
+	background-color: #BBBBBB;
+	border:1px solid #424141;
+	height: 20px;
+	width: 400px;
+}
+
+.add-line {
+	margin-right:20px;
+	float:left;
+	cursor:pointer;
+}

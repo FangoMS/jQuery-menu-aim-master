@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>catTestPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/jquery.gridster.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+</head>
+
+<body>
+    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="../jquery.menu-aim.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/ui/tmpl.js"></script>
+    <script src="../jquery.dragsort-0.5.1.js" type="text/javascript"></script>
+    <script src="js/seajs/2.3.0/dist/sea.js" type="text/javascript"></script>
+    <script src="../jquery.gridster.js" type="text/javascript"></script>
+
+    <div class="container">
+        <div class="row">
+            <div class="nav-all">
+            <div id="categoryNav" style="max-width:120px;"> </div>
+
+            <div class="dropdown-layer"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="categoryNav2" style="max-width:120px;"> </div>
+        </div>
+
+        <div class="row">
+            <div class="sort-list">
+                
+                <div class="sort-section">
+                    <div class="add-line"> + </div>
+                    <span class="sort-item" data-cid="1">图书</span>
+                    <span class="sort-item" data-cid="2">音像</span>
+                </div>
+
+                <div class="sort-section">
+                    <div class="add-line"> + </div>
+                    <span class="sort-item" data-cid="3">软件</span>
+                </div>
+                <div class="sort-section">
+                    <div class="add-line">+ </div>
+                    <span class="sort-item" data-cid="4">文学</span>
+                </div>
+                <div class="sort-section">
+                    <div class="add-line">+ </div>
+                    <span class="sort-item" data-cid="5">古典</span>
+                </div>
+                <div class="sort-section">
+                    <div class="add-line">+ </div>
+                    <span class="sort-item" data-cid="6">历史</span>
+                </div>
+                <div class="sort-section">
+                    <div class="add-line">+ </div>
+                    <span class="sort-item" data-cid="7">操作系统</span>
+                </div>
+            </div>
+            
+            <ul style="width: 1100px; position: relative; height: 650px;">
+                <!-- <li data-col="1" data-row="1" data-sizex="1" data-sizey="2" class="gs-w" style="display: list-item;">0</li>
+                <li data-col="2" data-row="1" data-sizex="3" data-sizey="2" class="gs-w" style="display: list-item;">1</li>
+                <li data-col="8" data-row="2" data-sizex="3" data-sizey="2" class="gs-w player-revert" style="display: list-item; position: absolute;">2</li>
+                <li data-col="9" data-row="4" data-sizex="2" data-sizey="1" class="gs-w" style="display: list-item; position: absolute;">3</li>
+                <li data-col="6" data-row="1" data-sizex="4" data-sizey="1" class="gs-w" style="display: list-item; position: absolute;">4</li>
+                <li data-col="2" data-row="3" data-sizex="1" data-sizey="2" class="gs-w" style="display: list-item; position: absolute;">5</li>
+                <li data-col="3" data-row="3" data-sizex="2" data-sizey="1" class="gs-w" style="display: list-item; position: absolute;">6</li>
+                <li data-col="1" data-row="8" data-sizex="3" data-sizey="2" class="gs-w" style="display: list-item; position: absolute;">7</li>
+                <li data-col="1" data-row="10" data-sizex="1" data-sizey="1" class="gs-w" style="display: list-item; position: absolute;">8</li>
+                <li data-col="1" data-row="6" data-sizex="2" data-sizey="2" class="gs-w" style="display: list-item; position: absolute;">9</li>
+                <li data-col="1" data-row="3" data-sizex="1" data-sizey="3" class="gs-w" style="display: list-item;">10</li> -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+    $(".sort-section").dragsort({ dragSelector: "span",  dragBetween: true, itemSelector: "span", placeHolderTemplate: "<span class='placeHolder'>这里</span>", dragEnd: afterDrag, });
+
+    function afterDrag() {
+       $.each($(".sort-section"), function(i, item) {
+            if ($(item).children().length <= 1) {
+                $(item).remove();
+            }
+       });
+
+       $.each($("span.sort-item"), function(i, item) {
+            console.log($(item).data('cid'));
+       });
+    }
+
+    $(".add-line").click(function() {
+        console.log($(this).parent());
+        var $sortSection = $('<div>').attr('class', 'sort-section');
+        var $addLine = $('<div>').attr('class', 'add-line').html('+');
+        $sortSection.append($addLine);
+        $(this).parent().after($sortSection);
+        $(".sort-section").dragsort('destroy');
+        $(".sort-section").dragsort({ dragSelector: "span",  dragBetween: true, itemSelector: "span", placeHolderTemplate: "<span class='placeHolder'>这里</span>", dragEnd: afterDrag, });
+    });
+
+
+
+    // var gridster;
+
+    // $(function(){
+
+    //   gridster = $(".gridster > ul").gridster({
+    //       widget_margins: [5, 5],
+    //       widget_base_dimensions: [100, 55]
+    //   }).data('gridster');
+
+    //   var widgets = [
+    //       ['<li>0</li>', 1, 1],
+    //       ['<li>1</li>', 1, 1],
+    //       ['<li>2</li>', 1, 1],
+    //       ['<li>3</li>', 1, 1],
+    //       ['<li>4</li>', 1, 1],
+    //       ['<li>5</li>', 1, 1],
+    //       ['<li>6</li>', 1, 1],
+    //       ['<li>7</li>', 1, 1],
+    //       ['<li>8</li>', 1, 1],
+    //       ['<li>9</li>', 1, 1],
+    //       ['<li>10</li>', 1, 1]
+    //   ];
+
+    //   $.each(widgets, function(i, widget){
+    //       gridster.add_widget.apply(gridster, widget)
+    //   });
+
+    // });
+    
+    </script>
+
+    <script>
+            // seajs 的简单配置       
+            seajs.config({
+              base: "./js/",
+              // alias: {
+              //   "jquery": "jquery/jquery/1.10.1/jquery.js",
+              // }
+            });
+
+            // 加载入口模块
+     //       seajs.use("./main.js");
+
+            seajs.use('./js/ui/nav.js', function(nav){
+                var opt = {
+                    navId: 'myNav',
+                    attach: 'categoryNav',
+                };
+                new nav(opt);
+             //   var kk = new nav(opt);
+             var opt1 = {
+                navId: 'myNav2',
+                attach: 'categoryNav2'
+             };
+             new nav(opt1);
+            });
+
+            var $myMenu = $("#myNav");
+            $myMenu.menuAim({
+                activate: cc,
+                deactivate: deactivateSubmenu
+            });
+            function cc(row) {
+                alert('kkk');
+            }
+            function deactivateSubmenu() {
+
+            }
+    </script>
+</body>
+</html>
